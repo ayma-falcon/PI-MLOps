@@ -7,9 +7,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 app = FastAPI(debug=True) # Debug me muestra en el docs de fast api el error que tira y no solo por defecto internal server error
 
 # Carga los datos desde los CSV
-steam_games = pd.read_csv('steam_games.csv')
-users_items = pd.read_csv('users_items.csv')
-users_reviews = pd.read_csv('users_reviews.csv')
+steam_games = pd.read_csv('API/steam_games.csv')
+users_items = pd.read_csv('API/users_items.csv')
+users_reviews = pd.read_csv('API/users_reviews.csv')
 
 # Hace que la columna "posted_year" tenga tipo de dato int
 users_reviews['posted_year'] = users_reviews['posted_year'].astype(int)
