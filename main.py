@@ -70,34 +70,6 @@ def UserForGenre(genero: str):
         "Horas jugadas por el usuario": int(horas_max)
     }
 
-def UserForGenre(genero: str):
-
-    # Filtra los juegos por género
-    juegos_genero = steam_games[steam_games['genres'] == genero]
-
-    if juegos_genero.empty:
-        return {'message': f'No se encontraron juegos para el género: {genero}'}
-
-    # Combina los DataFrames usando la columna común 'item_name'
-    datos_genero = pd.merge(juegos_genero, users_items, on=['item_id'])
-
-    genero_df = datos_genero[datos_genero['genres'].str.contains(genero, case=False)]
-
-    if datos_genero.empty:
-        return {'message': f'No se encontraron datos para el género: {genero}'}
-
-    # Agrupa por usuario y suma las horas jugadas
-    usuario_mas_horas = genero_df.loc[genero_df['playtime_forever'].idxmax(), 'user_id']
-
-    # Encuentra el usuario con más horas jugadas
-    horas_por_anio = genero_df.groupby('release_year')['playtime_forever'].sum().reset_index()
-    acumulacion_horas = [{"Año": int(row[1]['release_year']), "Horas": int(row[1]['playtime_forever'])} for row in horas_por_anio.iterrows()]
-
-    return {
-        "Usuario con más horas jugadas para " + genero: usuario_mas_horas,
-        "Horas jugadas": acumulacion_horas
-    }
-
 @app.get('/users_recommend/')
 def UsersRecommend(anio: int):
 
