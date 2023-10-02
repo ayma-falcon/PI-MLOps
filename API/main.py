@@ -7,9 +7,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 app = FastAPI(debug=True) # Debug me muestra en el docs de fast api el error que tira y no solo por defecto internal server error
 
 # Carga los datos desde los CSV
-steam_games = pd.read_parquet('../datasets/steam_games.parquet')
-users_items = pd.read_parquet('../datasets/users_items.parquet')
-users_reviews = pd.read_parquet('../datasets/users_reviews.parquet')
+steam_games = pd.read_parquet('..\datasets\steam_games.parquet')
+users_items = pd.read_parquet('..\datasets\users_items.parquet')
+users_reviews = pd.read_parquet('..\datasets○\users_reviews.parquet')
 
 @app.get('/bienvenido/')
 def get_saludo():
