@@ -51,7 +51,7 @@ PyMySQL
 pyparsing
 python-dateutil
 pytz
-pywin32==306
+pywin32
 pyzmq==23.2.1
 regex
 requests
