@@ -4,7 +4,7 @@
 En el marco de este proyecto, se me encomendó la responsabilidad de desempeñar el papel de un Ingeniero MLOps. Mi rol específico implica actuar como un Data Scientist en el contexto de la plataforma Steam. La tarea principal consiste en desarrollar un sistema de recomendación de videojuegos destinado a los usuarios de la plataforma. Se espera que parta desde cero, desempeñando de manera ágil funciones de Data Engineer para lograr un Producto Mínimo Viable (MVP) para la finalización del proyecto.
 
 ## Extracción, Transformación y Carga ([ETL](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/ETL_reviews.ipynb))
-![ETL](https://myoctocat.com/assets/images/base-octocat.svg)
+![ETL](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/_src/ETL.webp)
 
 #### En el proceso de Extracción, Transformación y Carga (ETL), se llevaron a cabo las siguientes tareas:
 
@@ -19,12 +19,12 @@ En el marco de este proyecto, se me encomendó la responsabilidad de desempeñar
 * **Carga en formato Parquet:** Dado que los DataFrames en formato CSV resultaban excesivamente voluminosos, lo cual podía complicar la gestión de archivos, se tomó la decisión de cargarlos en formato Parquet. Esta elección permitió optimizar la eficiencia de almacenamiento y acceso a los datos, facilitando así el manejo de la información.
 
 ## Analisis Exploratorio de Datos ([EDA](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/EDA.ipynb))
-![EDA](https://myoctocat.com/assets/images/base-octocat.svg)
+![EDA](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/_src/EDA.jpg)
 
 En el proceso de Exploración de Datos (EDA), se realizaron análisis y evaluaciones específicas en relación a los datos esenciales para el modelo de recomendación. El objetivo principal de este análisis fue comprender cómo estos datos se relacionaban entre sí y si se identificaban patrones significativos. Estos hallazgos desempeñaron un papel fundamental en la fase de diseño de las funciones, ya que proporcionaron información crucial sobre cuáles serían los datos más apropiados esperar a la hora de ponerlas a prueba.
 
 ## Desarrollo [API](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/main.py)
-![FastApi-Render](https://myoctocat.com/assets/images/base-octocat.svg)
+![FastApi-Render](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/_src/FastApi-Render.png)
 
 En esta fase del proyecto, se plantea la disponibilización de los datos de la empresa mediante el uso del framework FastAPI. Las consultas que se proponen son las siguientes:
 
@@ -37,7 +37,7 @@ Ejemplo de generos para usar: Action, Indie, Casual, Simulation
 * def `sentiment_analysis`(año: int): Según el año de lanzamiento, se devuelve una lista con la cantidad de registros de reseñas de usuarios que se encuentren categorizados con un análisis de sentimiento.
 
 ## Modelo de recomendacion ([Machine Learning](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/main.py))
-![ML](https://myoctocat.com/assets/images/base-octocat.svg)
+![ML](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/_src/ML.png)
 
 Para la fase final del proyecto, se requiere la implementación de dos modelos de recomendación que posteriormente serán cargados en la API. Los modelos propuestos y su funcionamiento son los siguientes:
 * def **recomendacion_juego**(id de producto): Ingresando el id de producto, se recibe una lista con 5 juegos recomendados similares al ingresado.
