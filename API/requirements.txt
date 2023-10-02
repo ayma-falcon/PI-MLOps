@@ -35,7 +35,7 @@ nltk
 numpy
 packaging
 pandas
-pars
+parso
 pickleshare
 Pillow
 platformdirs
@@ -51,8 +51,8 @@ PyMySQL
 pyparsing
 python-dateutil
 pytz
-pywin32==23.2.1
-pyzmq
+pywin32==306
+pyzmq==23.2.1
 regex
 requests
 scikit-learn
