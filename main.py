@@ -1,10 +1,13 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Crea una instancia de la aplicación FastAPI y la asigna a la variable app
 app = FastAPI(debug=True) # Debug me muestra en el docs de fast api el error que tira y no solo por defecto internal server error
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Carga los datos desde los CSV
 steam_games = pd.read_parquet('datasets/steam_games.parquet')
@@ -17,10 +20,6 @@ users_reviews['posted_year'] = users_reviews['posted_year'].astype(int)
 steam_games['item_id'] = steam_games['item_id'].astype(int)
 users_items['item_id'] = users_items['item_id'].astype(int)
 users_reviews['item_id'] = users_reviews['item_id'].astype(int)
-
-@app.get('/bienvenido/')
-def get_saludo():
-    return {"mensaje": "Hola, soy Aymara Falcon y bienvenido a mi proyecto"}
 
 @app.get('/play_time_genre/')
 def PlayTimeGenre(genero: str):
