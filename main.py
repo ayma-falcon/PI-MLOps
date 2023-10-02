@@ -7,9 +7,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 app = FastAPI(debug=True) # Debug me muestra en el docs de fast api el error que tira y no solo por defecto internal server error
 
 # Carga los datos desde los CSV
-steam_games = pd.read_csv('API/steam_games.csv')
-users_items = pd.read_csv('API/users_items.csv')
-users_reviews = pd.read_csv('API/users_reviews.csv')
+steam_games = pd.read_parquet('datasets/steam_games.parquet')
+users_items = pd.read_parquet('datasets/users_items.parquet')
+users_reviews = pd.read_parquet('datasets/users_reviews.parquet')
 
 # Hace que la columna "posted_year" tenga tipo de dato int
 users_reviews['posted_year'] = users_reviews['posted_year'].astype(int)
@@ -187,8 +187,6 @@ def recomendacion_juego(game_id:int, top_n=5): #Creo la funcion que toma como pa
         top_n = int(top_n)
         recommended_indices = [i[0] for i in sim_scores[1:top_n+1]]  # Obtiene los indices de los juegos recomendados
     return set(muestra_steam_games['item_name'].iloc[recommended_indices]) # Devuelve los titulos de los juegos recomendados
-
-df2 = users_reviews.head(20000)
 
 @app.get('/recomendacion_usuario/')
 def recomendacion_usuario(id:str):
