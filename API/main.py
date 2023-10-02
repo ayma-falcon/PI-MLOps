@@ -11,6 +11,10 @@ steam_games = pd.read_parquet('../datasets/steam_games.parquet')
 users_items = pd.read_parquet('../datasets/users_items.parquet')
 users_reviews = pd.read_parquet('../datasets/users_reviews.parquet')
 
+@app.get('/bienvenido/')
+def get_saludo():
+    return {"mensaje": "Hola, soy Aymara Falcon y bienvenido a mi proyecto"}
+
 @app.get('/play_time_genre/')
 def PlayTimeGenre(genero: str):
     

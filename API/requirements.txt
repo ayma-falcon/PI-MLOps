@@ -52,7 +52,7 @@ pyparsing
 python-dateutil
 pytz
 pywin32
-pyzmq==23.2.1
+pyzmq
 regex
 requests
 scikit-learn
@@ -75,4 +75,3 @@ urllib3
 vaderSentiment
 virtualenv
 wcwidth
-wordcloud
