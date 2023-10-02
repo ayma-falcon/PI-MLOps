@@ -4,7 +4,7 @@
 En el marco de este proyecto, se me encomendó la responsabilidad de desempeñar el papel de un Ingeniero MLOps. Mi rol específico implica actuar como un Data Scientist en el contexto de la plataforma Steam. La tarea principal consiste en desarrollar un sistema de recomendación de videojuegos destinado a los usuarios de la plataforma. Se espera que parta desde cero, desempeñando de manera ágil funciones de Data Engineer para lograr un Producto Mínimo Viable (MVP) para la finalización del proyecto.
 
 ## Extracción, Transformación y Carga ([ETL](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/ETL_reviews.ipynb))
-![ETL](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/_src/ETL.webp)
+![ETL](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/_src/ETL.jpg)
 
 #### En el proceso de Extracción, Transformación y Carga (ETL), se llevaron a cabo las siguientes tareas:
 
