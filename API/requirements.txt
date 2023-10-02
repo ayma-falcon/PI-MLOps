@@ -58,7 +58,6 @@ scikit-learn
 scipy
 seaborn
 six
-scikit-learn
 sniffio
 soupsieve
 SQLAlchemy
@@ -71,6 +70,8 @@ traitlets
 typing_extensions
 tzdata
 urllib3
+uvicorn
 vaderSentiment
 virtualenv
 wcwidth
+wordcloud
