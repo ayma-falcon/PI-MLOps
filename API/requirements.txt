@@ -58,7 +58,6 @@ scikit-learn
 scipy
 seaborn
 six
-sklearn
 sniffio
 soupsieve
 SQLAlchemy
