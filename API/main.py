@@ -11,6 +11,13 @@ steam_games = pd.read_parquet('steam_games.parquet')
 users_items = pd.read_parquet('users_items.parquet')
 users_reviews = pd.read_parquet('users_reviews.parquet')
 
+# Hace que la columna "posted_year" tenga tipo de dato int
+users_reviews['posted_year'] = users_reviews['posted_year'].astype(int)
+# Hace que ambas columnas "item_id" en los DataFrames tengan el mismo tipo de datos
+steam_games['item_id'] = steam_games['item_id'].astype(int)
+users_items['item_id'] = users_items['item_id'].astype(int)
+users_reviews['item_id'] = users_reviews['item_id'].astype(int)
+
 @app.get('/bienvenido/')
 def get_saludo():
     return {"mensaje": "Hola, soy Aymara Falcon y bienvenido a mi proyecto"}
@@ -34,10 +41,11 @@ def PlayTimeGenre(genero: str):
     anio_max_horas = horas_por_anio.idxmax()
     # horas_max = horas_por_anio.max()
 
-    return {"Año de lanzamiento con más horas jugadas para genero" + {genero} : int(anio_max_horas)}
+    return {"Año de lanzamiento con más horas jugadas para genero" + str(genero) : int(anio_max_horas)}
 
 @app.get('/user_for_genre/')
 def UserForGenre(genero: str):
+
     # Filtra los juegos por género
     juegos_genero = steam_games[steam_games['genres'] == genero]
 
@@ -58,11 +66,12 @@ def UserForGenre(genero: str):
     horas_max = horas_por_usuario.max()
 
     return {
-        "Usuario con más horas jugadas para el género" + {genero}: usuario_max_horas,
+        "Usuario con más horas jugadas para el género" + str(genero): usuario_max_horas,
         "Horas jugadas por el usuario": int(horas_max)
     }
 
 def UserForGenre(genero: str):
+
     # Filtra los juegos por género
     juegos_genero = steam_games[steam_games['genres'] == genero]
 
@@ -91,6 +100,7 @@ def UserForGenre(genero: str):
 
 @app.get('/users_recommend/')
 def UsersRecommend(anio: int):
+
     # Filtrar recomendaciones positivas (sentiment_analysis = 1 o 2) y para el año especificado
     recomendaciones = users_reviews[(users_reviews['recommend'] == True) & ((users_reviews['sentiment_analysis'] == 1) | (users_reviews['sentiment_analysis'] == 2)) & (users_reviews['posted_year'] == anio)]
 
