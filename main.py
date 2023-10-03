@@ -11,8 +11,8 @@ steam_games = pd.read_parquet('datasets/steam_games.parquet')
 users_items = pd.read_parquet('datasets/users_items.parquet')
 users_reviews = pd.read_parquet('datasets/users_reviews.parquet')
 
-muestra_steam_games = steam_games.head(1000)
-muestra_steam_games = steam_games.head(1000)
+muestra_steam_games = steam_games.head(10000)
+muestra_steam_games = steam_games.head(10000)
 
 # Hace que la columna "posted_year" tenga tipo de dato int
 users_reviews['posted_year'] = users_reviews['posted_year'].astype(int)
