@@ -137,8 +137,8 @@ def SentimentAnalysis(anio: int):
         "Positive": conteo_sentimiento.get(2, 0)
     }
 
-muestra_steam_games_modelo = steam_games.head(10000)
-muestra_users_reviews = users_reviews.head(10000)
+muestra_steam_games_modelo = steam_games.head(8000)
+muestra_users_reviews = users_reviews.head(8000)
 
 @app.get('/recomendacion_juego/')
 def recomendacion_juego(game_id:int, top_n=5): #Creo la funcion que toma como parametros la id del juego en game_id y los otros son hiperparametros que defino
