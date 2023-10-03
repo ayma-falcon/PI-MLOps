@@ -18,6 +18,10 @@ steam_games['item_id'] = steam_games['item_id'].astype(int)
 users_items['item_id'] = users_items['item_id'].astype(int)
 users_reviews['item_id'] = users_reviews['item_id'].astype(int)
 
+@app.get("/")
+def read_root():
+    return {"message": "Hello, World"}
+
 @app.get('/play_time_genre/')
 def PlayTimeGenre(genero: str):
     
