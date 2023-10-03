@@ -49,6 +49,6 @@ Ejemplo de id para usar: 761140, 643980, 670290, 767400
 Ejemplo de id para usar: evcentric, doctr
 
 ## Complementos
-* **[Video explicativo](https://www.youtube.com/):** Para obtener una comprensión más completa de este proyecto, les extiendo una cordial invitación para que vean mi video explicativo. En este video, se muestra la ejecución de la API y se ofrece una breve explicación de su funcionamiento.
+* **[Video explicativo](https://youtu.be/fk8gFYpSM4M):** Para obtener una comprensión más completa de este proyecto, les extiendo una cordial invitación para que vean mi video explicativo. En este video, se muestra la ejecución de la API y se ofrece una breve explicación de su funcionamiento.
 
 * **[Link API](https://pi-mlops-aymara-falcon.onrender.com/docs):** Link de la API en la cual se puede hacer uso de las funciones y el modelo de recomendación
