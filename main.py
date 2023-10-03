@@ -12,14 +12,15 @@ users_items = pd.read_parquet('datasets/users_items.parquet')
 users_reviews = pd.read_parquet('datasets/users_reviews.parquet')
 
 muestra_steam_games = steam_games.head(10000)
-muestra_steam_games = steam_games.head(10000)
+muestra_users_items = users_items.head(10000)
+muestra_users_reviews = users_reviews.head(10000)
 
 # Hace que la columna "posted_year" tenga tipo de dato int
-users_reviews['posted_year'] = users_reviews['posted_year'].astype(int)
+muestra_users_reviews['posted_year'] = muestra_users_reviews['posted_year'].astype(int)
 # Hace que ambas columnas "item_id" en los DataFrames tengan el mismo tipo de datos
-steam_games['item_id'] = steam_games['item_id'].astype(int)
-users_items['item_id'] = users_items['item_id'].astype(int)
-users_reviews['item_id'] = users_reviews['item_id'].astype(int)
+muestra_steam_games['item_id'] = muestra_steam_games['item_id'].astype(int)
+muestra_users_items['item_id'] = users_items['item_id'].astype(int)
+muestra_users_reviews['item_id'] = muestra_users_reviews['item_id'].astype(int)
 
 @app.get("/")
 def read_root():
@@ -29,13 +30,13 @@ def read_root():
 def PlayTimeGenre(genero: str):
     
     # Filtra los juegos por género
-    juegos_genero = steam_games[steam_games['genres'] == genero]
+    juegos_genero = muestra_steam_games[muestra_steam_games['genres'] == genero]
 
     if juegos_genero.empty:
         return {'message': f'No se encontraron juegos para el género: {genero}'}
 
     # Combina los DataFrames usando la columna común 'juego_id'
-    horas = pd.merge(juegos_genero, users_items, on=['item_name'])
+    horas = pd.merge(juegos_genero, muestra_users_items, on=['item_name'])
 
     # Agrupa por año y suma las horas jugadas
     horas_por_anio = horas.groupby('release_year')['playtime_forever'].sum()
@@ -50,13 +51,13 @@ def PlayTimeGenre(genero: str):
 def UserForGenre(genero: str):
 
     # Filtra los juegos por género
-    juegos_genero = steam_games[steam_games['genres'] == genero]
+    juegos_genero = muestra_steam_games[muestra_steam_games['genres'] == genero]
 
     if juegos_genero.empty:
         return {'message': f'No se encontraron juegos para el género: {genero}'}
 
     # Combina los DataFrames usando la columna común 'item_name'
-    datos_genero = pd.merge(juegos_genero, users_items, on=['item_id'])
+    datos_genero = pd.merge(juegos_genero, muestra_users_items, on=['item_id'])
 
     if datos_genero.empty:
         return {'message': f'No se encontraron datos para el género: {genero}'}
@@ -77,13 +78,13 @@ def UserForGenre(genero: str):
 def UsersRecommend(anio: int):
 
     # Filtrar recomendaciones positivas (sentiment_analysis = 1 o 2) y para el año especificado
-    recomendaciones = users_reviews[(users_reviews['recommend'] == True) & ((users_reviews['sentiment_analysis'] == 1) | (users_reviews['sentiment_analysis'] == 2)) & (users_reviews['posted_year'] == anio)]
+    recomendaciones = muestra_users_reviews[(muestra_users_reviews['recommend'] == True) & ((muestra_users_reviews['sentiment_analysis'] == 1) | (muestra_users_reviews['sentiment_analysis'] == 2)) & (muestra_users_reviews['posted_year'] == anio)]
 
     if recomendaciones.empty:
         return {'message': f'No se encontraron recomendaciones para el año: {anio}'}
 
     # Combinar con los datos de juegos
-    datos_completos = pd.merge(recomendaciones, steam_games, on=['item_id'])
+    datos_completos = pd.merge(recomendaciones, muestra_steam_games, on=['item_id'])
 
     if datos_completos.empty:
         return {'message': f'No se encontraron datos de juegos para las recomendaciones del año: {anio}'}
@@ -99,13 +100,13 @@ def UsersRecommend(anio: int):
 @app.get('/users_not_recommend/')
 def UsersNotRecommend(anio: int):
     # Filtrar recomendaciones positivas (sentiment_analysis = 1 o 2) y para el año especificado
-    recomendaciones = users_reviews[(users_reviews['recommend'] == False) & ((users_reviews['sentiment_analysis'] == 0)) & (users_reviews['posted_year'] == anio)]
+    recomendaciones = muestra_users_reviews[(muestra_users_reviews['recommend'] == False) & ((muestra_users_reviews['sentiment_analysis'] == 0)) & (muestra_users_reviews['posted_year'] == anio)]
 
     if recomendaciones.empty:
         return {'message': f'No se encontraron recomendaciones para el año: {anio}'}
 
     # Combinar con los datos de juegos
-    datos_completos = pd.merge(recomendaciones, steam_games, on=['item_id'])
+    datos_completos = pd.merge(recomendaciones, muestra_steam_games, on=['item_id'])
 
     if datos_completos.empty:
         return {'message': f'No se encontraron datos de juegos para las recomendaciones del año: {anio}'}
@@ -121,7 +122,7 @@ def UsersNotRecommend(anio: int):
 @app.get('/sentiment_analysis/')
 def SentimentAnalysis(anio: int):
     # Filtrar reseñas para el año especificado
-    reseñas_por_anio = users_reviews[users_reviews['posted_year'] == anio]
+    reseñas_por_anio = muestra_users_reviews[muestra_users_reviews['posted_year'] == anio]
 
     if reseñas_por_anio.empty:
         return {'message': f'No se encontraron reseñas para el año: {anio}'}
@@ -163,7 +164,7 @@ def recomendacion_juego(game_id:int, top_n=5): #Creo la funcion que toma como pa
 
 @app.get('/recomendacion_usuario/')
 def recomendacion_usuario(id:str):
-    aux = users_reviews[users_reviews['user_id'] == id]
+    aux = muestra_users_reviews[muestra_users_reviews['user_id'] == id]
     aux.reset_index(drop=True, inplace=True)
 
     if not aux.empty:  # Verifica si hay datos en 'aux'
