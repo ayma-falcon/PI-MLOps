@@ -137,22 +137,22 @@ def SentimentAnalysis(anio: int):
         "Positive": conteo_sentimiento.get(2, 0)
     }
 
-muestra_steam_games_modelo = steam_games.head(5000)
-muestra_users_reviews = users_reviews.head(5000)
+muestra_steam_games_modelo = steam_games.head(10000)
+muestra_users_reviews_modelo = users_reviews.head(10000)
 
 @app.get('/recomendacion_juego/')
 def recomendacion_juego(game_id:int, top_n=5): #Creo la funcion que toma como parametros la id del juego en game_id y los otros son hiperparametros que defino
     tfidf_vectorizer = TfidfVectorizer()
 
     #Con esto los datos de la columna genero se transforman en vectores numericos para porder entrenarlos y luego los entreno
-    tfidf_matrix = tfidf_vectorizer.fit_transform(muestra_steam_games['genres'])
+    tfidf_matrix = tfidf_vectorizer.fit_transform(muestra_steam_games_modelo['genres'])
 
     #Aca compara los cosenos de los vectores para encontrar similitudes
     cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
     
     # Busca el indice del juego del que ingrese el ID
     idx = None
-    idx_list = muestra_steam_games.index[muestra_steam_games['item_id'] == game_id].tolist()
+    idx_list = muestra_steam_games_modelo.index[muestra_steam_games_modelo['item_id'] == game_id].tolist()
     recommended_indices = []  # Inicializa como una lista vacía
     if idx_list:
         idx = idx_list[0]
@@ -163,11 +163,11 @@ def recomendacion_juego(game_id:int, top_n=5): #Creo la funcion que toma como pa
         sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True) # Ordena los juegos por la similitud
         top_n = int(top_n)
         recommended_indices = [i[0] for i in sim_scores[1:top_n+1]]  # Obtiene los indices de los juegos recomendados
-    return set(muestra_steam_games['item_name'].iloc[recommended_indices]) # Devuelve los titulos de los juegos recomendados
+    return set(muestra_steam_games_modelo['item_name'].iloc[recommended_indices]) # Devuelve los titulos de los juegos recomendados
 
 @app.get('/recomendacion_usuario/')
 def recomendacion_usuario(id:str):
-    aux = muestra_users_reviews[muestra_users_reviews['user_id'] == id]
+    aux = muestra_users_reviews_modelo[muestra_users_reviews_modelo['user_id'] == id]
     aux.reset_index(drop=True, inplace=True)
 
     if not aux.empty:  # Verifica si hay datos en 'aux'
