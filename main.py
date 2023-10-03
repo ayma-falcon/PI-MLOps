@@ -11,20 +11,20 @@ steam_games = pd.read_parquet('datasets/steam_games.parquet')
 users_items = pd.read_parquet('datasets/users_items.parquet')
 users_reviews = pd.read_parquet('datasets/users_reviews.parquet')
 
+# Hace que la columna "posted_year" tenga tipo de dato int
+users_reviews['posted_year'] = users_reviews['posted_year'].astype(int)
+# Hace que ambas columnas "item_id" en los DataFrames tengan el mismo tipo de datos
+steam_games['item_id'] = steam_games['item_id'].astype(int)
+users_items['item_id'] = users_items['item_id'].astype(int)
+users_reviews['item_id'] = users_reviews['item_id'].astype(int)
+
 muestra_steam_games = steam_games.head(40000)
 muestra_users_items = users_items.head(40000)
 muestra_users_reviews = users_reviews.head(40000)
 
-# Hace que la columna "posted_year" tenga tipo de dato int
-muestra_users_reviews['posted_year'] = muestra_users_reviews['posted_year'].astype(int)
-# Hace que ambas columnas "item_id" en los DataFrames tengan el mismo tipo de datos
-muestra_steam_games['item_id'] = muestra_steam_games['item_id'].astype(int)
-muestra_users_items['item_id'] = users_items['item_id'].astype(int)
-muestra_users_reviews['item_id'] = muestra_users_reviews['item_id'].astype(int)
-
-@app.get("/")
-def read_root():
-    return {"message": "Hello, World"}
+@app.get("/Saludo/")
+def Saludo():
+    return {"message": "Hola, soy Aymara Falcon y este es mi proyecto"}
 
 @app.get('/play_time_genre/')
 def PlayTimeGenre(genero: str):
