@@ -11,6 +11,9 @@ steam_games = pd.read_parquet('datasets/steam_games.parquet')
 users_items = pd.read_parquet('datasets/users_items.parquet')
 users_reviews = pd.read_parquet('datasets/users_reviews.parquet')
 
+muestra_steam_games = steam_games.head(10000)
+muestra_steam_games = steam_games.head(10000)
+
 # Hace que la columna "posted_year" tenga tipo de dato int
 users_reviews['posted_year'] = users_reviews['posted_year'].astype(int)
 # Hace que ambas columnas "item_id" en los DataFrames tengan el mismo tipo de datos
@@ -132,8 +135,6 @@ def SentimentAnalysis(anio: int):
         "Neutral": conteo_sentimiento.get(1, 0),
         "Positive": conteo_sentimiento.get(2, 0)
     }
-
-muestra_steam_games = steam_games.head(20000)
 
 @app.get('/recomendacion_juego/')
 def recomendacion_juego(game_id:int, top_n=5): #Creo la funcion que toma como parametros la id del juego en game_id y los otros son hiperparametros que defino
