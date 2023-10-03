@@ -7,6 +7,7 @@ En el marco de este proyecto, se me encomendó la responsabilidad de desempeñar
 ![ETL](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/_src/ETL.jpg)
 
 #### En el proceso de Extracción, Transformación y Carga (ETL), se llevaron a cabo las siguientes tareas:
+> Nota: Los archivos JSON utilizados para ETL se encuentran en la carpeta [datasets](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/tree/main/datasets) comprimidos, en caso de querer ejecutar el codigo se deben descomprimir
 
 * **Desanidamiento de datasets:** Inicialmente, se abordó la desanidación de datasets en formato JSON con el fin de convertirlos en datos manejables. Además, dentro del DataFrame obtenido tras el primer desanidamiento, se identificaron columnas que también requerían desanidamiento adicional.
 
@@ -25,12 +26,13 @@ En el proceso de Exploración de Datos (EDA), se realizaron análisis y evaluaci
 
 ## Desarrollo [API](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/main.py)
 ![FastApi-Render](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/_src/FastApi-Render.png)
+> Nota: Dado que estamos utilizando la versión gratuita de Render, es importante destacar que todas las funciones se ejecutan utilizando una muestra del código que corresponde a los primeros 40,000 datos de los DataFrames. Esta medida se toma para evitar posibles errores relacionados con la capacidad de procesamiento limitada disponible en Render.
 
 En esta fase del proyecto, se plantea la disponibilización de los datos de la empresa mediante el uso del framework FastAPI. Las consultas que se proponen son las siguientes:
 
 * def `PlayTimeGenre`(genero: str): Devuelve el año con mas horas jugadas para dicho género.
 Ejemplo de generos para usar: Action, Indie, Casual, Simulation
-* def `UserForGenre`(genero: str): Devuelve el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año.
+* def `UserForGenre`(genero: str): Devuelve el usuario que acumula más horas jugadas para el género dado y la cantidad total de horas jugadas.
 Ejemplo de generos para usar: Action, Indie, Casual, Simulation
 * def `UsersRecommend`(año: int): Devuelve el top 3 de juegos más recomendados por usuarios para el año dado.
 * def `UsersNotRecommend`(año: int): Devuelve el top 3 de juegos menos recomendados por usuarios para el año dado.
@@ -38,9 +40,13 @@ Ejemplo de generos para usar: Action, Indie, Casual, Simulation
 
 ## Modelo de recomendacion ([Machine Learning](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/main.py))
 ![ML](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/_src/ML.png)
+> Nota: De manera similar a las funciones, en los modelos de recomendación, también se emplearon muestras de los DataFrames equivalentes a los primeros 5000 datos. Esto se hizo para garantizar un rendimiento óptimo y evitar problemas de capacidad de procesamiento en el entorno de Render.
 
 Para la fase final del proyecto, se requiere la implementación de dos modelos de recomendación que posteriormente serán cargados en la API. Los modelos propuestos y su funcionamiento son los siguientes:
 * def **recomendacion_juego**(id de producto): Ingresando el id de producto, se recibe una lista con 5 juegos recomendados similares al ingresado.
 Ejemplo de id para usar: 761140, 643980, 670290, 767400
 * def **recomendacion_usuario**(id de usuario): Ingresando el id de un usuario, se recibe una lista con 5 juegos recomendados para dicho usuario.
 Ejemplo de id para usar: evcentric, doctr, DJKamBer, 76561198089393905, 76561198312638244
+
+## [Video explicativo](https://www.youtube.com/)
+Para obtener una comprensión más completa de este proyecto, les extiendo una cordial invitación para que vean mi video explicativo. En este video, se muestra la ejecución de la API y se ofrece una breve explicación de su funcionamiento.
