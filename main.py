@@ -11,9 +11,9 @@ steam_games = pd.read_parquet('datasets/steam_games.parquet')
 users_items = pd.read_parquet('datasets/users_items.parquet')
 users_reviews = pd.read_parquet('datasets/users_reviews.parquet')
 
-muestra_steam_games = steam_games.head(2000)
-muestra_users_items = users_items.head(20000)
-muestra_users_reviews = users_reviews.head(20000)
+muestra_steam_games = steam_games.head(35000)
+muestra_users_items = users_items.head(35000)
+muestra_users_reviews = users_reviews.head(35000)
 
 # Hace que la columna "posted_year" tenga tipo de dato int
 muestra_users_reviews['posted_year'] = muestra_users_reviews['posted_year'].astype(int)
@@ -68,13 +68,9 @@ def UserForGenre(genero: str):
         # Encuentra el usuario con más horas jugadas
     usuario_max_horas = horas_por_usuario.idxmax()
 
-    # Calcular la acumulación de horas jugadas por año
-    horas_por_anio = datos_genero.groupby('released_year')['playtime_forever'].sum().reset_index()
-    acumulacion_horas = [{"Año": int(row['released_year']), "Horas": int(row['playtimeforever'])} for row in horas_por_anio.iterrows()]
-
     return {
         "Usuario con más horas jugadas para el género" + str(genero): usuario_max_horas,
-        "Horas jugadas por el usuario": int(acumulacion_horas)
+        "Horas jugadas por el usuario": int(horas_por_usuario)
     }
 
 @app.get('/users_recommend/')
