@@ -38,7 +38,7 @@ Ejemplo de generos para usar: Action, Indie, Casual, Simulation
 * def `UsersNotRecommend`(año: int): Devuelve el top 3 de juegos menos recomendados por usuarios para el año dado.
 * def `sentiment_analysis`(año: int): Según el año de lanzamiento, se devuelve una lista con la cantidad de registros de reseñas de usuarios que se encuentren categorizados con un análisis de sentimiento.
 
-## Modelo de recomendacion ([Machine Learning](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/main.py))
+## Modelo de recomendacion ([Machine Learning](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/ML.ipynb))
 ![ML](https://github.com/ayma-falcon/Proyecto-Integrador-MLOps/blob/main/_src/ML.png)
 > Nota: De manera similar a las funciones, en los modelos de recomendación, también se emplearon muestras de los DataFrames equivalentes a los primeros 5000 datos. Esto se hizo para garantizar un rendimiento óptimo y evitar problemas de capacidad de procesamiento en el entorno de Render.
 
@@ -46,7 +46,9 @@ Para la fase final del proyecto, se requiere la implementación de dos modelos d
 * def **recomendacion_juego**(id de producto): Ingresando el id de producto, se recibe una lista con 5 juegos recomendados similares al ingresado.
 Ejemplo de id para usar: 761140, 643980, 670290, 767400
 * def **recomendacion_usuario**(id de usuario): Ingresando el id de un usuario, se recibe una lista con 5 juegos recomendados para dicho usuario.
-Ejemplo de id para usar: evcentric, doctr, DJKamBer, 76561198089393905, 76561198312638244
+Ejemplo de id para usar: evcentric, doctr
 
-## [Video explicativo](https://www.youtube.com/)
-Para obtener una comprensión más completa de este proyecto, les extiendo una cordial invitación para que vean mi video explicativo. En este video, se muestra la ejecución de la API y se ofrece una breve explicación de su funcionamiento.
+## Complementos
+* **[Video explicativo](https://www.youtube.com/):** Para obtener una comprensión más completa de este proyecto, les extiendo una cordial invitación para que vean mi video explicativo. En este video, se muestra la ejecución de la API y se ofrece una breve explicación de su funcionamiento.
+
+* **[Link API](https://pi-mlops-aymara-falcon.onrender.com/docs):** Link de la API en la cual se puede hacer uso de las funciones y el modelo de recomendación
