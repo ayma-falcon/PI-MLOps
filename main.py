@@ -65,16 +65,13 @@ def UserForGenre(genero: str):
     # Agrupa por usuario y suma las horas jugadas
     horas_por_usuario = datos_genero.groupby('user_id')['playtime_forever'].sum()
 
-        # Encuentra el usuario con más horas jugadas
+    # Encuentra el usuario con más horas jugadas
     usuario_max_horas = horas_por_usuario.idxmax()
-
-    # Calcular la acumulación de horas jugadas por año
-    horas_por_anio = datos_genero.groupby('released_year')['playtime_forever'].sum().reset_index()
-    acumulacion_horas = [{"Año": int(row['released_year']), "Horas": int(row['playtimeforever'])} for row in horas_por_anio.iterrows()]
+    horas_max = horas_por_usuario.max()
 
     return {
         "Usuario con más horas jugadas para el género" + str(genero): usuario_max_horas,
-        "Horas jugadas por el usuario": int(acumulacion_horas)
+        "Horas jugadas por el usuario": int(horas_max)
     }
 
 @app.get('/users_recommend/')
