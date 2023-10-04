@@ -18,6 +18,8 @@ steam_games['item_id'] = steam_games['item_id'].astype(int)
 users_items['item_id'] = users_items['item_id'].astype(int)
 users_reviews['item_id'] = users_reviews['item_id'].astype(int)
 
+# Por la memoria RAM limitada de render se opto por usar una muestra de los datos
+# De lo contrario las funciones terminaban arrojando un error
 muestra_steam_games = steam_games.head(40000)
 muestra_users_items = users_items.head(40000)
 muestra_users_reviews = users_reviews.head(40000)
@@ -137,6 +139,7 @@ def SentimentAnalysis(anio: int):
         "Positive": conteo_sentimiento.get(2, 0)
     }
 
+# Por la misma razon de memoria RAM explicado al principio se opto por usar una muestra incluso inferior de los datos que se usaron en las funciones
 muestra_steam_games_modelo = steam_games.head(5000)
 muestra_users_reviews_modelo = users_reviews.head(5000)
 
